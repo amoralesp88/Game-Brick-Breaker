@@ -11,7 +11,7 @@ class Brick {
         this.width = 80;
         this.height = 24;
         this.sounds = {
-            bricks: new Audio("../assets/audio/bricks.mp3")
+            bricks: new Audio("assets/audio/bricks.mp3")
         }
 
         this.markedForDeletion= false;

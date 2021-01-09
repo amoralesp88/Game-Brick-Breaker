@@ -27,9 +27,9 @@ class Game {
         new InputHandler(this.paddle, this);
 
         this.sounds = {
-            theme: new Audio("../assets/audio/theme.mp3"),
-            brick: new Audio("../assets/audio/bricks.mp3"),
-            gameover: new Audio("../assets/audio/game-over-sound.wav")
+            theme: new Audio("assets/audio/theme.mp3"),
+            brick: new Audio("assets/audio/bricks.mp3"),
+            gameover: new Audio("assets/audio/game-over-sound.wav")
 
         }
 
@@ -100,19 +100,19 @@ class Game {
 
         if (this.gamestate == GAMESTATE.MENU) {
             ctx.rect(0, 0, this.gameWidth, this.gameHeight);
-            ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-            ctx.fill();
+            /*ctx.fillStyle = 'rgba(0, 0, 0, 1)';*/
+            /*ctx.fill();*/
 
 
-            ctx.font = '30px Cabin Sketch';
+            /*ctx.font = '30px Cabin Sketch';
             ctx.fillStyle = 'White';
             ctx.textAlign = 'center';
-            ctx.fillText("Press SPACEBAR to Start", this.gameWidth / 2, this.gameHeight / 2);
+            ctx.fillText("Press SPACEBAR to Start", this.gameWidth / 2, this.gameHeight / 2);*/
         }
 
         if (this.gamestate == GAMESTATE.GAMEOVER) {
             this.gameOverImage = new Image()
-            this.gameOverImage.src = '../assets/images/game-over.png'
+            this.gameOverImage.src = 'assets/images/game-over.png'
             ctx.drawImage(
                 this.gameOverImage,
                 0,
