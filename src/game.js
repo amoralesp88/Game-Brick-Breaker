@@ -100,14 +100,6 @@ class Game {
 
         if (this.gamestate == GAMESTATE.MENU) {
             ctx.rect(0, 0, this.gameWidth, this.gameHeight);
-            /*ctx.fillStyle = 'rgba(0, 0, 0, 1)';*/
-            /*ctx.fill();*/
-
-
-            /*ctx.font = '30px Cabin Sketch';
-            ctx.fillStyle = 'White';
-            ctx.textAlign = 'center';
-            ctx.fillText("Press SPACEBAR to Start", this.gameWidth / 2, this.gameHeight / 2);*/
         }
 
         if (this.gamestate == GAMESTATE.GAMEOVER) {
