@@ -9,18 +9,18 @@ class Ball {
 
         this.game = game;
 
-       this.reset();
+       this.reset(game.currentLevel);
        this.size = 19;
     }
-    reset (){
+    reset (currentLevel){
         this.position = {
             x: Math.round(Math.random() * (700 - 20) + 20),
             y: Math.round(Math.random() * (500 - 400) + 400)
         };
 
         this.speed = {
-            x: 6,
-            y: -2
+            x: 4 + currentLevel,
+            y: -2 - currentLevel
         };
     }
 
@@ -49,7 +49,7 @@ class Ball {
 
         if (this.position.y + this.size > this.gameHeight) {
             this.game.lives--;
-            this.reset();
+            this.reset(this.game.currentLevel);
 
         }
         if (detectCollision(this, this.game.paddle)) {

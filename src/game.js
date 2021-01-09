@@ -25,12 +25,20 @@ class Game {
         this.currentLevel = 0;
 
         new InputHandler(this.paddle, this);
+
+        this.sounds = {
+            theme: new Audio("../assets/audio/theme.mp3"),
+            brick: new Audio("../assets/audio/bricks.mp3"),
+            gameover: new Audio("../assets/audio/game-over-sound.wav")
+
+        }
+
     }
 
 
     start() {
+        this.sounds.theme.play()
 
-     
         if (this.gamestate != GAMESTATE.MENU &&
             this.gamestate != GAMESTATE.NEWLEVEL
 
@@ -38,12 +46,12 @@ class Game {
 
 
         this.bricks = buildLevel(this, this.levels[this.currentLevel]);
-        this.ball.reset();
+        this.ball.reset(this.currentLevel);
 
         this.gameObjects = [this.ball, this.paddle];
         this.gamestate = GAMESTATE.RUNNING;
 
-
+        document.getElementById('level').innerText = `Level ${this.currentLevel +1}`
 
     }
 
@@ -82,6 +90,12 @@ class Game {
             ctx.fillStyle = 'White';
             ctx.textAlign = 'center';
             ctx.fillText("Paused", this.gameWidth / 2, this.gameHeight / 2);
+            this.sounds.theme.pause();
+        }
+
+        if (this.gamestate == GAMESTATE.RUNNING) {
+            this.sounds.theme.play();
+
         }
 
         if (this.gamestate == GAMESTATE.MENU) {
@@ -89,7 +103,7 @@ class Game {
             ctx.fillStyle = 'rgba(0, 0, 0, 1)';
             ctx.fill();
 
-          
+
             ctx.font = '30px Cabin Sketch';
             ctx.fillStyle = 'White';
             ctx.textAlign = 'center';
@@ -97,15 +111,19 @@ class Game {
         }
 
         if (this.gamestate == GAMESTATE.GAMEOVER) {
-            ctx.rect(0, 0, this.gameWidth, this.gameHeight);
-            ctx.fillStyle = 'red';
-            ctx.fill();
-            ctx.font = '30px Cabin Sketch';
-            ctx.fillStyle = 'White';
-            ctx.textAlign = 'center';
-            ctx.fillText("GAME OVER", this.gameWidth / 2, this.gameHeight / 2);
-            this.restartButton.style.visibility = "visible"
-            
+            this.gameOverImage = new Image()
+            this.gameOverImage.src = '../assets/images/game-over.png'
+            ctx.drawImage(
+                this.gameOverImage,
+                0,
+                0,
+                this.gameWidth,
+                this.gameHeight
+                );
+            this.restartButton.style.visibility = "visible";
+            this.sounds.gameover.play(),
+            this.sounds.theme.pause()
+
         }
     }
 

@@ -7,7 +7,7 @@ const GAME_HEIGHT = 600;
 let game = new Game(GAME_WIDTH, GAME_HEIGHT);
 
 let home = document.getElementById("welcome-image");
-
+let die = document.getElementById("gameOver");
 
 let playAgainBtn = document.getElementById("buttonrestart")
 let unShow = (element) => element.style.visibility = "hidden"
@@ -20,7 +20,6 @@ buttonrestart.addEventListener('click', () => {
 });
 
 document.addEventListener('keydown', (event) => {
-    console.log('entra',home)
     switch (event.keyCode) {
         case 32:
             game.start();

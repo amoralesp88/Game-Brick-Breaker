@@ -10,6 +10,9 @@ class Brick {
 
         this.width = 80;
         this.height = 24;
+        this.sounds = {
+            bricks: new Audio("../assets/audio/bricks.mp3")
+        }
 
         this.markedForDeletion= false;
     }
@@ -19,8 +22,8 @@ class Brick {
         if(detectCollision(this.game.ball, this)){
             this.game.ball.speed.y = -this.game.ball.speed.y;
             this.markedForDeletion = true;
-        }
-
+            this.sounds.bricks.play()
+        }  
     }
 
     draw(ctx){
